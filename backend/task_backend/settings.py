@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+import channels_redis.core
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -74,6 +76,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'task_backend.wsgi.application'
 ASGI_APPLICATION = 'task_backend.asgi.application'
+
+
+CHANNEL_LAYERS = {
+    "default" : {
+        "BACKEND" : "channels_redis.core.RedisChannelLayer",
+        "CONFIG" : { "host" : [("127.0.0.1", "6379")]}
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases

@@ -1,15 +1,15 @@
 from .models import *
-from rest_framework.serializer import ModelSerializers
+from rest_framework.serializers import ModelSerializer
 
 
-class UserSerializer(ModelSerializers):
+class UserSerializer(ModelSerializer):
 
     class Meta:
 
         model = User
         fields = ('name', 'password', 'email', 'role', 'organization', 'sub_org', 'department')
 
-        kwargs = {
+        extra_kwargs = {
             'password' : {
                 'write_only' : True
             },

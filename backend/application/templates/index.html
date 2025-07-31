@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="{% url 'test2' %}" method="post">
+      <input id="text-writer" type="text" size="200">
+      <input id="text-submit" type="submit">
+    </form>
+
+    <script>
+
+      const socket = new WebSocket('ws://notification/')
+
+      socket.onmessage = function(e){ alert(json.parse(e.data)}
+    </script>
+</body>
+</html>
