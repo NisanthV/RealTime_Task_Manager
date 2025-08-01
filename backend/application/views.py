@@ -9,6 +9,7 @@ from rest_framework import status
 from .serializer import *
 from .models import *
 from django.shortcuts import render
+
 #login
 class LoginView(APIView):
 
@@ -44,7 +45,6 @@ class UserRegisterView(CreateAPIView):
 
 class RetriveUserView(RetrieveAPIView):
 
-    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
