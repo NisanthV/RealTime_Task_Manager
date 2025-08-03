@@ -1,10 +1,15 @@
 import React from 'react'
-import { Outlet, NavLink } from 'react-router-dom';
-import Login from '../pages/Login';
+import { Outlet, Navigate } from 'react-router-dom';
 
 export default function Protected() {
   
     const token = localStorage.getItem("accessToken");
-
-    return token ? <Outlet /> : null; 
+    // console.log("Protected component - Token check:", token);
+    
+    if (!token) {
+        console.log("No token found, redirecting to login");
+        return <Navigate to="/login" replace />;
+    }
+    
+    return <Outlet />;
 }
