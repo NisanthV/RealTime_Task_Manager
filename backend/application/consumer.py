@@ -1,14 +1,14 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
 from django.contrib.auth.models import AnonymousUser
-from .utils import get_group_name
+from .utils import get_group_name, get_user
 import json
 
 class NotificationConsumer(AsyncWebsocketConsumer):
     
     async def connect(self):
 
-        user = self.scope['user']
-        
+        user = await get_user(self.scope['query_string'].decode())
+        print(user,"1234567890plkjbvcxsw3456879ioklkbvcdxedrt8y9uipklnb vcxsedrt78yu9ikp")
         if isinstance(user, AnonymousUser):
 
             await self.close()
@@ -20,9 +20,10 @@ class NotificationConsumer(AsyncWebsocketConsumer):
 
         await self.accept()
     
-    async def disconnect(self):
+    async def disconnect(self, close_code):
 
-        await self.channel_layer.group_discard(self.group_name, self.channel_name)
+        if hasattr(self, 'group_name'):
+            await self.channel_layer.group_discard(self.group_name, self.channel_name)
     
     async def task_push(self, event):
 

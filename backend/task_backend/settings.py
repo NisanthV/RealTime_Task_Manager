@@ -83,7 +83,7 @@ ASGI_APPLICATION = 'task_backend.asgi.application'
 CHANNEL_LAYERS = {
     "default" : {
         "BACKEND" : "channels_redis.core.RedisChannelLayer",
-        "CONFIG" : { "host" : [("127.0.0.1", "6379")]}
+        "CONFIG" : { "hosts" : [("127.0.0.1", "6379")]}
     }
 }
 
@@ -150,7 +150,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 REST_FRAMEWORK = {
-        'DEFAULT_AUTHENTICATION_CLASS' : (
+        'DEFAULT_AUTHENTICATION_CLASSES' : (
             'rest_framework_simplejwt.authentication.JWTAuthentication',
         )
 }
@@ -161,3 +161,4 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
 }
+
