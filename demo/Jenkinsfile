@@ -11,7 +11,9 @@ pipeline{
             }
 
             steps{
-                sh 'mvn clean package'
+                dir('demo'){
+                    sh 'mvn clean package'
+                }
             }
         }
 
