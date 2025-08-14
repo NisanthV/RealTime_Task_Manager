@@ -21,7 +21,7 @@ public class AuthController {
     @Autowired
     private JwtHelper jwt;
 
-    @PostMapping("/create")
+    @PostMapping("/register")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserModel user){
         return services.createUser(user);
     }
