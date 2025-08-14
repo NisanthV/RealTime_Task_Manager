@@ -19,13 +19,19 @@ pipeline{
 
         stage('Docker'){
             steps{
-                withCredentials([usernamePassword(credentialsId: "docker", passwordVariable: "docker_pass", usernameVariable: "docker_user")]){
-                    sh'''
-                        docker login -u $docker_user -p $docker_pass
-                        docker build -t $docker_user/task-manage .
-                        docker push $docker_user/task-manage:latest
-                    '''
+
+                dir("demo"){
+
+                    withCredentials([usernamePassword(credentialsId: "docker", passwordVariable: "docker_pass", usernameVariable: "docker_user")]){
+                        sh'''
+                          docker login -u $docker_user -p $docker_pass
+                          docker build -t $docker_user/task-manage .
+                          docker push $docker_user/task-manage:latest
+                        '''
+                    }
+
                 }
+
             }
         }
 
