@@ -12,7 +12,7 @@ import java.util.*;
 public class GlobalException {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> notVaild(MethodArgumentNotValidException exception){
+    public ResponseEntity<?> notValid(MethodArgumentNotValidException exception){
 
         Map<String, List<String>> error = new HashMap<>();
 
@@ -26,5 +26,11 @@ public class GlobalException {
         );
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(JwtRefreshException.class)
+    public ResponseEntity<?> notValid(JwtRefreshException exception){
+
+        return new ResponseEntity<String>("Token not valid", HttpStatus.UNAUTHORIZED);
     }
 }

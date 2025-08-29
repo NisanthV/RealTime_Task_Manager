@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.dto.TokenDto;
 import com.example.demo.jwt.JwtHelper;
 import com.example.demo.models.UserModel;
 import com.example.demo.services.AuthServices;
@@ -21,6 +22,7 @@ public class AuthController {
     @Autowired
     private JwtHelper jwt;
 
+
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserModel user){
         return services.createUser(user);
@@ -30,4 +32,10 @@ public class AuthController {
     public ResponseEntity<?> login(@Valid @RequestBody UserModel user){
         return services.login(user);
     }
+
+    @PostMapping("/get-access-token")
+    public ResponseEntity<TokenDto> getAccessToken(@RequestBody String refreshToken){
+        return services.createAccessToken(refreshToken);
+    }
+
 }
